@@ -21,6 +21,3 @@ class TableA(Model):
                 'numeric'
             ]
         }
-
-    def __init__(self):
-        pass
