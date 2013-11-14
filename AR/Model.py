@@ -10,11 +10,11 @@ class Model(object):
     table_columns = [
     ]
 
-    values = {
+    values_for_updating = {
     }
 
     def __init__(self):
-        pass
+        self.is_loaded_from_db = False
 
     def save(self):
         pass
@@ -22,9 +22,10 @@ class Model(object):
     def set_value(self, name='', value=''):
         if not (name in self.table_columns):
             raise WrongValueException('No such column in table.')
-        self.check_value_allowed(name, value)
+        self.check_value_allowed_by_rules(name, value)
+        self.values_for_updating[name] = value
 
-    def check_value_allowed(self, name='', value=''):
+    def check_value_allowed_by_rules(self, name='', value=''):
         rules = self.rules()
         if name in rules:
             if 'numeric' in rules[name]:
