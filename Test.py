@@ -1,14 +1,12 @@
+import unittest
+
 from Models.TableA import *
-from Models.TableB import *
 
 
-class Test(object):
-    def __init__(self):
-        self.test_save()
+class Test(unittest.TestCase):
 
     @staticmethod
     def test_save():
         table_a = TableA()
+        table_a.set_value('ids', '')
         table_a.save()
-
-test = Test
