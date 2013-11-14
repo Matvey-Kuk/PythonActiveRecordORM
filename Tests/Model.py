@@ -6,9 +6,11 @@ from AR.Exceptions import *
 
 class Test(unittest.TestCase):
 
+    some_value = 123
+
     def test_save(self):
         table_a = TableA()
-        table_a.set_value('TableB_id', 123)
+        table_a.set_value('TableB_id', self.some_value)
         table_a.save()
 
     def test_exceptions(self):
