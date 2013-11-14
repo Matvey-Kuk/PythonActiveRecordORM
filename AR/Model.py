@@ -21,13 +21,22 @@ class Model(object):
 
     def set_value(self, name='', value=''):
         if not (name in self.table_columns):
-            raise WrongValueException
+            raise WrongValueException('No such column in table.')
+        self.check_value_allowed(name, value)
 
     def check_value_allowed(self, name='', value=''):
-        pass
+        rules = self.rules()
+        if name in rules:
+            if 'numeric' in rules[name]:
+                if not isinstance(value, int):
+                    raise WrongValueException('Value must be numeric.')
+            if 'required' in rules[name]:
+                if value is None:
+                    raise WrongValueException('Value is required.')
+        else:
+            return True
 
-    @staticmethod
-    def rules():
+    def rules(self):
         return {
         }
 

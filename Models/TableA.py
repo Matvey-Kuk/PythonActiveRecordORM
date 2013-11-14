@@ -10,8 +10,7 @@ class TableA(Model):
         'TableB_id'
     ]
 
-    @staticmethod
-    def rules():
+    def rules(self):
         return {
             'id': [
                 'required',
